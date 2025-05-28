@@ -1,0 +1,11 @@
+Source: termusic
+Section: utils
+Priority: optional
+Maintainer: Dario Griffo <dariogriffo@gmail.com>
+Homepage: https://github.com/tramhao/termusic
+Package: termusic
+Version: VERSION-BUILD_VERSION+DIST
+Architecture: amd64
+Depends: libmpv2,libasound2
+Description: Listen to music and podcasts freely as both in freedom and free of charge!
+

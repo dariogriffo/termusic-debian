@@ -1,10 +1,10 @@
-name: Build yazi for Debian
+name: Build termusic for Debian
 
 on:
   workflow_dispatch:
     inputs:
-      yazi_version:
-        description: The version of yazi to build.
+      termusic_version:
+        description: The version of termusic to build.
         type: string
         required: true
       build_version:
@@ -16,28 +16,28 @@ permissions:
   contents: write
 
 jobs:
-  build-yazi:
+  build-termusic:
     name: Build
     runs-on: ubuntu-latest    
     steps:
-      - name: Checkout yazi-debian
+      - name: Checkout termusic-debian
         uses: actions/checkout@v4
 
-      - name: Build yazi
-        run: ./build.sh ${{ inputs.yazi_version }} ${{ inputs.build_version }}
+      - name: Build termusic
+        run: ./build.sh ${{ inputs.termusic_version }} ${{ inputs.build_version }}
       
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:
           name: artifact
-          path: yazi_*.deb
+          path: termusic_*.deb
 
 
-  release-yazi:
-    name: (Draft-)Release yazi for Debian
+  release-termusic:
+    name: (Draft-)Release termusic for Debian
     if: github.event_name == 'workflow_dispatch' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
-    needs: build-yazi
+    needs: build-termusic
     steps:
       - name: Download All Artifacts
         uses: actions/download-artifact@v4
@@ -48,7 +48,7 @@ jobs:
         uses: softprops/action-gh-release@v2
         with:
           draft: true
-          files: yazi_*.deb
-          name: ${{ inputs.yazi_version }}+${{ inputs.build_version }}
+          files: termusic_*.deb
+          name: ${{ inputs.termusic_version }}+${{ inputs.build_version }}
           tag_name: ${{ env.RELEASE_TAG }}
           fail_on_unmatched_files: true

@@ -9,7 +9,7 @@ ARG FULL_VERSION
 ENV RUSTUP_HOME=/usr/local/rustup \
     CARGO_HOME=/usr/local/cargo \
     PATH=/usr/local/cargo/bin:$PATH \
-    RUST_VERSION=1.85.0
+    RUST_VERSION=1.90.0
 
 RUN set -eux; \
     wget "https://static.rust-lang.org/rustup/archive/1.28.1/x86_64-unknown-linux-gnu/rustup-init"; \

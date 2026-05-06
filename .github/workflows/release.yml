@@ -11,6 +11,14 @@ on:
         description: The build version.
         type: string
         required: true
+      architecture:
+        description: Architecture to build (amd64, arm64, or 'all' for all architectures)
+        type: choice
+        default: 'all'
+        options:
+          - 'all'
+          - 'amd64'
+          - 'arm64'
 
 permissions:
   contents: write
@@ -18,14 +26,17 @@ permissions:
 jobs:
   build-termusic:
     name: Build
-    runs-on: ubuntu-latest    
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout termusic-debian
         uses: actions/checkout@v4
 
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
       - name: Build termusic
-        run: ./build.sh ${{ inputs.termusic_version }} ${{ inputs.build_version }}
-      
+        run: ./build.sh ${{ inputs.termusic_version }} ${{ inputs.build_version }} ${{ inputs.architecture }}
+
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
         with:

@@ -15,6 +15,8 @@ RUN mkdir -p /output/DEBIAN
 COPY ${TERMUSIC_RELEASE}/termusic /output/usr/bin/
 COPY ${TERMUSIC_RELEASE}/termusic-server /output/usr/bin/
 COPY output/DEBIAN/control /output/DEBIAN/
+COPY output/DEBIAN/postinst /output/DEBIAN/postinst
+RUN chmod 755 /output/DEBIAN/postinst
 COPY output/copyright /output/usr/share/doc/termusic/
 COPY output/changelog.Debian /output/usr/share/doc/termusic/
 COPY output/README.md /output/usr/share/doc/termusic/

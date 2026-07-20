@@ -1,0 +1,17 @@
+Source: termusic
+Section: utils
+Priority: optional
+Maintainer: Dario Griffo <dariogriffo@gmail.com>
+Build-Depends: debhelper-compat (= 13), wget, ca-certificates, libmpv-dev, libasound2-dev
+Standards-Version: 4.6.2
+Homepage: https://github.com/tramhao/termusic
+Rules-Requires-Root: no
+
+Package: termusic
+Architecture: amd64 arm64
+Depends: ${misc:Depends}
+Description: Terminal Music Player written in Rust
+ termusic is a terminal music player written in Rust.
+ It supports various audio formats and provides a TUI interface.
+ .
+ This package includes both the termusic player and the termusic-server binary.

@@ -1,7 +1,5 @@
-ARG DEBIAN_DIST=bookworm
 FROM debian:bookworm
 
-ARG DEBIAN_DIST
 ARG VERSION
 ARG BUILD_VERSION
 ARG FULL_VERSION
@@ -23,11 +21,9 @@ COPY output/README.md /output/usr/share/doc/termusic/
 
 RUN chmod 755 /output/usr/bin/termusic /output/usr/bin/termusic-server
 
-RUN sed -i "s/DIST/$DEBIAN_DIST/" /output/usr/share/doc/termusic/changelog.Debian
 RUN sed -i "s/FULL_VERSION/$FULL_VERSION/" /output/usr/share/doc/termusic/changelog.Debian
-RUN sed -i "s/DIST/$DEBIAN_DIST/" /output/DEBIAN/control
 RUN sed -i "s/VERSION/$VERSION/" /output/DEBIAN/control
 RUN sed -i "s/BUILD_VERSION/$BUILD_VERSION/" /output/DEBIAN/control
 RUN sed -i "s/SUPPORTED_ARCHITECTURES/$ARCH/" /output/DEBIAN/control
 
-RUN dpkg-deb --build /output /termusic_${FULL_VERSION}.deb
+RUN dpkg-deb -Zxz --build /output /termusic_${FULL_VERSION}.deb

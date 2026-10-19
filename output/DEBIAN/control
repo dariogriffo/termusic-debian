@@ -6,6 +6,6 @@ Homepage: https://github.com/tramhao/termusic
 Package: termusic
 Version: VERSION-BUILD_VERSION~griffo
 Architecture: SUPPORTED_ARCHITECTURES
-Depends: libmpv2,libasound2
+Depends: libc6 (>= 2.39), libgcc-s1, libstdc++6 (>= 5), libasound2t64 | libasound2, libmpv2, libglib2.0-0t64 | libglib2.0-0, libgstreamer1.0-0
 Description: Listen to music and podcasts freely as both in freedom and free of charge!
 
